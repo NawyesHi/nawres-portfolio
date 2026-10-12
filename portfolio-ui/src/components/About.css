@@ -375,13 +375,132 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .socials-grid-horizontal {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .social-massive-card {
-    min-height: 140px;
-    padding: 20px;
+    min-height: 120px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .massive-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .massive-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .massive-card-content {
+    margin-top: 14px;
+  }
+
+  .massive-card-title {
+    font-size: 15px;
+  }
+
+  .massive-card-desc {
+    font-size: 12px;
+  }
+
+  .massive-card-arrow {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__bio-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
+  .tech-stack-card {
+    padding: 22px 16px;
+    border-radius: 14px;
+  }
+
+  .highlight-card {
+    padding: 12px 14px;
+  }
+
+  .socials-label-large {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+  }
+
+  .socials-grid-horizontal {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .social-massive-card {
+    min-height: 110px;
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+
+  .massive-icon-wrapper {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .massive-icon-wrapper svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .massive-card-content {
+    margin-top: 10px;
+    gap: 2px;
+  }
+
+  .massive-card-title {
+    font-size: 14px;
+  }
+
+  .massive-card-desc {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .massive-card-arrow {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .socials-grid-horizontal {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .social-massive-card {
+    min-height: auto;
+    padding: 12px 14px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .massive-card-content {
+    margin-top: 0;
+  }
+
+  .massive-card-arrow {
+    position: static;
+    opacity: 0.6;
+    transform: none;
+    margin-left: auto;
   }
 }

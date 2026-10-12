@@ -91,33 +91,46 @@ export default function IntroReel({
         timers.current.push(setTimeout(() => setOpen(false), FADE_MS));
     }, []);
 
-    // Wait for the video to be buffered (with a safety timeout)
+    // Wait for the video to be buffered (with multiple ready checks)
     useEffect(() => {
         if (!open) return;
         const v = videoRef.current;
-        if (v && v.readyState >= 4) setReady(true);
-        const t = setTimeout(() => setReady(true), 6000);
-        return () => clearTimeout(t);
+        if (v && v.readyState >= 2) setReady(true);
     }, [open]);
 
-    // Once ready: try with sound at the start volume, else start muted
+    // Safety timeout: intro NEVER blocks the user from reaching the site.
+    // If the video fails or doesn't start playing within 5s, gracefully proceed to main content.
+    useEffect(() => {
+        if (!open) return;
+        const safetyTimer = setTimeout(() => {
+            const v = videoRef.current;
+            if (!v || v.paused || v.currentTime === 0 || v.readyState < 2) {
+                console.warn("Intro reel timeout (5s): skipping intro to main content.");
+                finish();
+            }
+        }, 5000);
+        return () => clearTimeout(safetyTimer);
+    }, [open, finish]);
+
+    // Once ready: attempt playback. On mobile, muted autoplay is guaranteed.
     useEffect(() => {
         if (!open || !ready) return;
         const v = videoRef.current;
         if (!v) return;
+
         v.volume = startVolume;
-        v.muted = false;
-        v.play()
-            .then(() => setMuted(false))
-            .catch((err) => {
-                if (err && err.name === "NotAllowedError") {
-                    v.muted = true; // muted autoplay is always allowed
-                    setMuted(true);
-                    setAutoMuted(true);
-                    v.play().catch(() => { });
-                }
+        // Start playback (muted autoplay is universally supported on iOS/Android)
+        v.play().catch((err) => {
+            console.warn("Autoplay blocked or failed, retrying muted:", err);
+            v.muted = true;
+            setMuted(true);
+            setAutoMuted(true);
+            v.play().catch(() => {
+                // If playback still cannot proceed, don't trap the user
+                finish();
             });
-    }, [open, ready, startVolume]);
+        });
+    }, [open, ready, startVolume, finish]);
 
     // Lock page scroll while the intro is on screen
     useEffect(() => {
@@ -268,14 +281,24 @@ export default function IntroReel({
                 <video
                     ref={videoRef}
                     src={src}
-                    poster={poster}
+                    poster={poster || "/nawres.png"}
+                    autoPlay
+                    muted={muted}
                     playsInline
                     preload="auto"
+                    onLoadedData={() => setReady(true)}
+                    onCanPlay={() => setReady(true)}
                     onCanPlayThrough={() => setReady(true)}
                     onWaiting={() => setBuffering(true)}
-                    onPlaying={() => setBuffering(false)}
+                    onPlaying={() => {
+                        setBuffering(false);
+                        setReady(true);
+                    }}
                     onEnded={finish}
-                    onError={finish}
+                    onError={() => {
+                        console.warn("Video failed to load; gracefully showing main content.");
+                        finish();
+                    }}
                     onTimeUpdate={(e) => {
                         const { currentTime, duration } = e.currentTarget;
                         if (duration) setProgress(currentTime / duration);
@@ -335,8 +358,9 @@ export default function IntroReel({
                             display: "flex",
                             alignItems: "center",
                             gap: 8,
-                            height: 32,
-                            padding: autoMuted ? "0 4px 0 6px" : "0 6px",
+                            minHeight: 44,
+                            minWidth: 44,
+                            padding: autoMuted ? "0 8px 0 10px" : "0 10px",
                             border: "none",
                             borderRadius: 999,
                             background: "transparent",

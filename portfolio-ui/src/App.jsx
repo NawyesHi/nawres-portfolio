@@ -35,6 +35,7 @@ function App() {
     <>
       <IntroReel
         src="/Intro_nawyes.mp4"
+        poster="/nawres.png"
         onFinish={() => setIntroDone(true)}
       />
 

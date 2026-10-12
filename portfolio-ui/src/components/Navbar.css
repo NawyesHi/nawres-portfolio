@@ -223,11 +223,17 @@
 .navbar__burger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   z-index: 210;
 }
 
@@ -327,9 +333,16 @@
 
 .navbar__mobile-footer {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   display: flex;
-  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 16px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .navbar__mobile-footer a {
@@ -341,6 +354,12 @@
   text-decoration: none;
   transition: color 0.3s;
   font-weight: 400 !important;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
 }
 
 .navbar__mobile-footer a:hover {
@@ -350,10 +369,10 @@
 /* Mobile responsive */
 @media (max-width: 768px) {
   .navbar {
-    padding: 20px 24px;
+    padding: 18px 20px;
   }
   .navbar--scrolled {
-    padding: 14px 24px;
+    padding: 12px 20px;
   }
   .navbar__center {
     display: none;
@@ -363,5 +382,23 @@
   }
   .navbar__burger {
     display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 14px 16px;
+  }
+  .navbar--scrolled {
+    padding: 10px 16px;
+  }
+  .navbar__logo-image {
+    height: 46px;
+  }
+  .navbar__logo-name {
+    font-size: 13.5px;
+  }
+  .navbar__logo-title {
+    font-size: 10.5px;
   }
 }

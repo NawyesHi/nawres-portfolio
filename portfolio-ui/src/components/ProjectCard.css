@@ -381,6 +381,61 @@
 
 .pcard__discover:hover::before { left: 120%; }
 
+/* ════════════ RESPONSIVE ════════════ */
+@media (max-width: 768px) {
+  .pcard {
+    border-radius: 18px;
+    max-width: 100%;
+  }
+
+  .pcard__tilt,
+  .pcard__inner,
+  .pcard__face {
+    border-radius: 18px;
+  }
+
+  .pcard__back {
+    padding: 24px;
+  }
+
+  .pcard__back-title {
+    font-size: 1.3rem;
+  }
+
+  .pcard--featured .pcard__back-title {
+    font-size: 1.5rem;
+  }
+
+  .pcard__back-desc {
+    font-size: 13px;
+  }
+
+  .pcard__discover {
+    min-height: 44px;
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pcard__back {
+    padding: 18px;
+  }
+
+  .pcard__back-title {
+    font-size: 1.15rem;
+  }
+
+  .pcard__tags {
+    gap: 6px;
+  }
+
+  .pcard__tag {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+}
+
 /* ════════════ REDUCED MOTION ════════════ */
 @media (prefers-reduced-motion: reduce) {
   .pcard__inner       { transition: transform 0.2s ease; }

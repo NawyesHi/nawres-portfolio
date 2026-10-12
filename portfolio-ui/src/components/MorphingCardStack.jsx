@@ -61,10 +61,10 @@ export function MorphingCardStack({
   /* ── Stack positioning per depth level ── */
   const stackStyle = (pos) => ({
     position: 'absolute',
-    top:    pos * 10,
-    left:   pos * 10,
+    top:    pos * 8,
+    left:   pos * 6,
     zIndex: 10 - pos,
-    rotate: (pos - 1) * 2.5,
+    rotate: (pos - 1) * 2,
     scale:  1 - pos * 0.025,
   });
 
