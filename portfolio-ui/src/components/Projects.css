@@ -1,0 +1,333 @@
+/* ══════════════════════════════════════════════════
+   Projects Section  ·  Full CSS
+   ══════════════════════════════════════════════════ */
+
+#projects {
+  position: relative;
+  z-index: 10;
+  margin-top: -80px;
+  padding-top: 140px;
+  padding-bottom: 120px;
+  background-color: var(--bg-primary);
+  border-top-left-radius: 50% 80px;
+  border-top-right-radius: 50% 80px;
+  overflow: hidden;
+  max-width: 100vw;
+}
+
+.projects-shapegrid-container {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 85%);
+  opacity: 0.85;
+}
+
+.projects-header-wrapper {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+  overflow: visible;
+}
+
+.projects-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 3vw;
+}
+
+.projects__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.projects__header-copy {
+  flex: 1;
+  min-width: 240px;
+}
+
+.projects__lede {
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-top: -8px;
+}
+
+.projects__process {
+  overflow: hidden;
+  margin-top: 28px;
+  scroll-margin-top: 96px;
+}
+
+/* ══════════════════════════════════════════════════
+   WHY ME BUTTON  ·  UIverse-inspired, red palette
+   ══════════════════════════════════════════════════ */
+
+.why-container {
+  --btn-color:          #d92635;     /* primary red */
+  --btn-color-hover:    #e8303f;     /* lighter red */
+  --corner-color:       rgba(255,255,255,0.12);
+  --corner-dist:        22px;
+  --corner-multiplier:  1.5;
+  --timing-fn:          cubic-bezier(0, 0, 0, 2.5);
+  --duration:           260ms;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Main button ── */
+.why-btn {
+  position: relative;
+  min-width: 148px;
+  min-height: calc(var(--corner-dist) * 2);
+  border-radius: 14px;
+  border: none;
+  padding: 0.4em 1.4em;
+  cursor: pointer;
+  font-family: 'Syne', 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+
+  background:
+    linear-gradient(rgba(255,255,255,0.12), rgba(0,0,0,0.05)),
+    var(--btn-color);
+
+  box-shadow:
+    1px 1px 2px -1px rgba(255,255,255,0.2) inset,
+    0 2px 1px  rgba(0,0,0,0.25),
+    0 4px 2px  rgba(0,0,0,0.2),
+    0 8px 4px  rgba(0,0,0,0.16),
+    0 16px 8px rgba(0,0,0,0.12),
+    0 32px 16px rgba(0,0,0,0.08);
+
+  transition:
+    transform var(--duration) var(--timing-fn),
+    filter var(--duration) var(--timing-fn);
+}
+
+/* Active/open state */
+.why-btn--active {
+  background:
+    linear-gradient(rgba(255,255,255,0.06), rgba(0,0,0,0.1)),
+    #1a1a1a;
+  box-shadow:
+    1px 1px 2px -1px rgba(255,255,255,0.05) inset,
+    0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* ── Button text ── */
+.why-btn__text {
+  display: inline-block;
+  font-size: 1.1em;
+  font-family: 'Syne', 'Poppins', 'Inter', sans-serif;
+  font-weight: 700;
+  /* White text gradient on red button */
+  background-image: linear-gradient(180deg, #fff 0%, rgba(255,205,200,0.9) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.25)) drop-shadow(0 -1px 0 rgba(0,0,0,0.5));
+
+  transition:
+    transform var(--duration) var(--timing-fn),
+    filter var(--duration) var(--timing-fn);
+}
+
+/* ── Top/bottom drawers ── */
+.why-drawer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  min-height: 28px;
+  border-radius: 14px;
+  border: none;
+  padding: 0.3em 1.1em;
+  font-size: 0.78em;
+  font-weight: 600;
+  font-family: 'Poppins', 'Inter', monospace;
+  /* Drawer: slightly lighter/darker red */
+  background:
+    linear-gradient(rgba(255,255,255,0.1), rgba(0,0,0,0.06)),
+    var(--btn-color);
+  color: rgba(255,255,255,0.88);
+  opacity: 0;
+  white-space: nowrap;
+
+  transition:
+    transform calc(0.5 * var(--duration)) ease,
+    filter var(--duration) var(--timing-fn),
+    opacity calc(0.5 * var(--duration)) ease;
+
+  filter: blur(2px);
+}
+
+.why-drawer--top {
+  top: 0; left: 0;
+  border-radius: 10px 10px 0 0;
+  align-items: flex-start;
+}
+
+.why-drawer--bottom {
+  bottom: 0; right: 0;
+  border-radius: 0 0 10px 10px;
+  align-items: flex-end;
+}
+
+/* ── Corner SVGs ── */
+.why-corner {
+  position: absolute;
+  width: 30px;
+  fill: none;
+  stroke: var(--corner-color);
+  transition:
+    transform var(--duration) var(--timing-fn),
+    filter var(--duration) var(--timing-fn);
+}
+
+.why-corner:nth-of-type(1) {
+  top: 0; left: 0;
+  transform: translate(calc(-1 * var(--corner-dist)), calc(-1 * var(--corner-dist))) rotate(90deg);
+}
+.why-corner:nth-of-type(2) {
+  top: 0; right: 0;
+  transform: translate(var(--corner-dist), calc(-1 * var(--corner-dist))) rotate(180deg);
+}
+.why-corner:nth-of-type(3) {
+  bottom: 0; right: 0;
+  transform: translate(var(--corner-dist), var(--corner-dist)) rotate(-90deg);
+}
+.why-corner:nth-of-type(4) {
+  bottom: 0; left: 0;
+  transform: translate(calc(-1 * var(--corner-dist)), var(--corner-dist)) rotate(0deg);
+}
+
+/* ════ HOVER STATE ════ */
+.why-container:has(.why-btn:hover),
+.why-container:has(.why-btn:focus-visible) {
+
+  .why-btn {
+    transform: scale(1.06);
+    filter: drop-shadow(0 18px 18px rgba(217, 38, 53, 0.35));
+  }
+
+  .why-drawer--top {
+    transform: translateY(-22px) rotateZ(3deg);
+    filter: blur(0);
+    opacity: 1;
+    animation: why-hue 3s infinite linear;
+  }
+
+  .why-drawer--bottom {
+    transform: translateY(22px) rotateZ(3deg);
+    filter: blur(0);
+    opacity: 1;
+    animation: why-hue 3s infinite linear;
+  }
+
+  .why-btn__text {
+    transform: scale(1.05);
+    filter:
+      drop-shadow(0 1px 0 rgba(255,255,255,0.25))
+      drop-shadow(0 -1px 0 rgba(0,0,0,0.5))
+      drop-shadow(0 6px 3px rgba(0,0,0,0.3));
+  }
+
+  --corner-color: rgba(255,255,255,0.22);
+
+  .why-corner:nth-of-type(1) {
+    transform:
+      translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)), calc(-1 * var(--corner-multiplier) * var(--corner-dist)))
+      rotate(90deg);
+    filter:
+      drop-shadow(-8px  8px 1px var(--corner-color))
+      drop-shadow(-16px 16px 2px var(--corner-color));
+  }
+  .why-corner:nth-of-type(2) {
+    transform:
+      translate(calc(var(--corner-multiplier) * var(--corner-dist)), calc(-1 * var(--corner-multiplier) * var(--corner-dist)))
+      rotate(180deg);
+    filter:
+      drop-shadow(-8px  8px 1px var(--corner-color))
+      drop-shadow(-16px 16px 2px var(--corner-color));
+  }
+  .why-corner:nth-of-type(3) {
+    transform:
+      translate(calc(var(--corner-multiplier) * var(--corner-dist)), calc(var(--corner-multiplier) * var(--corner-dist)))
+      rotate(-90deg);
+    filter:
+      drop-shadow(-8px  8px 1px var(--corner-color))
+      drop-shadow(-16px 16px 2px var(--corner-color));
+  }
+  .why-corner:nth-of-type(4) {
+    transform:
+      translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)), calc(var(--corner-multiplier) * var(--corner-dist)))
+      rotate(0deg);
+    filter:
+      drop-shadow(-8px  8px 1px var(--corner-color))
+      drop-shadow(-16px 16px 2px var(--corner-color));
+  }
+}
+
+/* ════ ACTIVE PRESS STATE ════ */
+.why-container:has(.why-btn:active) {
+  .why-btn {
+    transform: scale(0.95);
+    filter: drop-shadow(0 8px 6px rgba(0,0,0,0.3));
+  }
+  .why-drawer--top,
+  .why-drawer--bottom {
+    transform: translateY(0) scale(0.5);
+  }
+  --corner-multiplier: 0.92;
+}
+
+/* ── Hue animation for drawers on hover ── */
+@keyframes why-hue {
+  0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+  50%       { filter: hue-rotate(-25deg) brightness(1.18); }
+}
+
+/* ══════════════════════════════════════════════════
+   MORPHING CARD STACK  ·  Section wrapper
+   ══════════════════════════════════════════════════ */
+.projects__stack-wrapper {
+  margin-top: 64px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .projects__stack-wrapper {
+    margin-top: 48px;
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .why-drawer,
+  .why-corner { transition: none; }
+
+  .why-container:has(.why-btn:hover) .why-drawer--top,
+  .why-container:has(.why-btn:hover) .why-drawer--bottom {
+    animation: none;
+  }
+}
