@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import './About.css';
 
 const skills = [
-  { name: 'Python (Machine Learning / IA)', level: 95, category: 'AI & Data' },
-  { name: 'Web (JS/TS, PHP, Laravel, HTML/CSS)', level: 90, category: 'Full Stack' },
+  { name: 'Python (Machine Learning / AI)', level: 95, category: 'AI & Data' },
+  { name: 'Web (React,Angular,JS/JSP, Laravel,HTML/CSS,PHP)', level: 90, category: 'Full Stack' },
   { name: 'Java / Android (Java/XML)', level: 85, category: 'Mobile' },
-  { name: 'C/C# & Unity (Jeux vidéo)', level: 85, category: 'Game Dev' },
+  { name: 'C/C# & Unity (Video Games)', level: 85, category: 'Game Dev' },
   { name: 'Databases (MySQL, SQLite, NoSQL:MongoDB)', level: 80, category: 'Data Storage' },
-  { name: 'Outils (Git, Kafka, Systèmes Embarqués)', level: 75, category: 'DevOps & Systems' },
+  { name: 'Outils (Git, Kafka, Embedded systems)', level: 75, category: 'DevOps & Systems' },
 ];
 
 const highlights = [
@@ -40,7 +40,7 @@ export default function About() {
       <div className="about__header">
         <p className="section-label">About Me & Expertise</p>
         <h2 className="section-title">
-          Passionate about <span className="gradient-text">great software</span> & IA
+          Passionate about <span className="gradient-text">great software</span> & AI
         </h2>
       </div>
 

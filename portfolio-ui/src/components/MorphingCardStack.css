@@ -311,6 +311,31 @@
   color: #fff;
 }
 
+/* ── Confidential button badge (same form as link) ── */
+.mcs__link--confidential {
+  cursor: default;
+  user-select: none;
+  background: linear-gradient(135deg, rgba(217, 38, 53, 0.22), rgba(158, 21, 32, 0.35));
+  border: 1px solid rgba(217, 38, 53, 0.42);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #ffdada;
+  font-size: 12.5px;
+  letter-spacing: 0.01em;
+}
+
+.mcs__link--confidential:hover {
+  transform: none;
+  background: linear-gradient(135deg, rgba(217, 38, 53, 0.3), rgba(158, 21, 32, 0.45));
+  border-color: rgba(217, 38, 53, 0.65);
+  box-shadow: 0 4px 20px rgba(217, 38, 53, 0.25);
+  color: #ffffff;
+}
+
+.mcs__lock-icon {
+  flex-shrink: 0;
+  color: #ff6b77;
+}
+
 /* ── Swipe hint (bottom of top stack card) ── */
 .mcs__hint {
   position: absolute;

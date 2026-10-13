@@ -4,6 +4,7 @@ import {
   Layers,
   Grid3X3,
   LayoutList,
+  Lock,
   MousePointer2,
   MessageCircle,
   ScanFace,
@@ -162,8 +163,17 @@ export function MorphingCardStack({
                         </div>
                       )}
 
-                      {/* Link — always visible */}
-                      {card.link && (
+                      {/* Link or Confidential notice — always visible */}
+                      {card.isConfidential ? (
+                        <div
+                          className="mcs__link mcs__link--confidential"
+                          title={card.confidentialTooltip || 'Source code and game assets are confidential to the company I worked with'}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Lock size={13} className="mcs__lock-icon" />
+                          <span>{card.confidentialText || 'Confidential • Company Code & Game'}</span>
+                        </div>
+                      ) : card.link ? (
                         <a
                           href={card.link}
                           target="_blank"
@@ -173,7 +183,7 @@ export function MorphingCardStack({
                         >
                           View on GitHub →
                         </a>
-                      )}
+                      ) : null}
                     </div>
                   </div>
 

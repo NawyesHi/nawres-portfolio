@@ -5,7 +5,7 @@ import {
   useTransform,
   useSpring,
   animate,
-} from 'framer-motion';
+import { Lock } from 'lucide-react';
 import './ProjectCard.css';
 
 /* ── Detect prefers-reduced-motion ── */
@@ -161,22 +161,32 @@ export default function ProjectCard({ project, isFeatured = false, staggerDelay 
                 ))}
               </div>
 
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pcard__discover"
-              >
-                View Project
-                <svg
-                  width="15" height="15" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" strokeWidth="2.5"
-                  aria-hidden="true"
+              {project.isConfidential ? (
+                <div
+                  className="pcard__discover pcard__discover--confidential"
+                  title={project.confidentialTooltip || 'Source code and game assets are confidential to the company I worked with'}
                 >
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
+                  <Lock size={14} style={{ marginRight: '6px', color: '#ff6b77' }} />
+                  {project.confidentialText || 'Confidential • Company Code & Game'}
+                </div>
+              ) : (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pcard__discover"
+                >
+                  View Project
+                  <svg
+                    width="15" height="15" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" strokeWidth="2.5"
+                    aria-hidden="true"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+              )}
             </div>
           </div>
 
